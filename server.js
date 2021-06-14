@@ -7,6 +7,7 @@ const express = require("express"),
   cookieParser = require("cookie-parser"),
   app = express(),
   books = require("./routes/books.js"),
+  morgan = require("morgan"),
   router = express.Router();
 
 class Server {
@@ -14,6 +15,7 @@ class Server {
     this.initExpressMiddleWare();
     this.initDatabase();
     this.listenPort();
+    this.initLogger();
     this.initRoutes();
   }
 }
@@ -38,9 +40,32 @@ Server.prototype.listenPort = function () {
   });
 };
 
+// Load API routes
 Server.prototype.initRoutes = function () {
   app.use("/api", router);
   router.use("/books", books);
 };
+
+// Logger
+Server.prototype.initLogger = function () {
+  app.use(morgan("dev"));
+};
+
+// Error handling.
+app.use((req, res, next) => {
+  const error = new Error("Id not found");
+  error.status = 404;
+  next(error);
+});
+
+// Default errors send by database.
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+});
 
 const server = new Server();
