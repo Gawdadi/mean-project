@@ -1,2 +1,14 @@
 .app-side-nav-bar {
+  padding: 16px;
+  display: grid;
+  grid-gap: 8px;
+  .side-bar-item {
+    background-color: #c7e1ff;
+    border-radius: 12px;
+    padding: 8px;
+    &:hover {
+      background-color: #9fcdff;
+      cursor: pointer;
+    }
+  }
 }

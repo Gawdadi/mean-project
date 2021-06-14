@@ -1,9 +1,13 @@
 .app-main {
   .content {
+    display: flex;
     .side-bar {
       width: 220px;
       background-color: #2076d21c;
       height: calc(100vh - 60px);
+    }
+    .main-content {
+      width: calc(100vw - 220px);
     }
   }
 }
