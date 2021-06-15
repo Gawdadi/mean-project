@@ -7,5 +7,3 @@
 //     require("./" + name)(app);
 //   });
 // };
-
-const employeeRoutes = require("./routes/employees");
