@@ -31,7 +31,6 @@ Server.prototype.initExpressMiddleWare = () => {
   app.use((req, res, next) => {
     // Use '*' to allow all origins.
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-    console.log(req.method);
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
