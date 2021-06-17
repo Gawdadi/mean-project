@@ -14,7 +14,7 @@ export class BooksListComponent implements OnInit {
   }
 
   getById() {
-    this.booksService.getById().subscribe((res) => {
+    this.booksService.getAll().subscribe((res) => {
       console.log(res);
     });
   }

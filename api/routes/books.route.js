@@ -2,11 +2,13 @@
 const express = require("express"),
   router = express.Router(),
   mongoose = require("mongoose"),
-  booksController = require("../controllers/books.controller");
+  BookSchema = require("../models/book.model"),
+  pageable = require("../middleware/pageable");
+booksController = require("../controllers/books.controller");
 
-router.get("/", booksController.getAll);
+router.get("/getAll", pageable.pagination(BookSchema), booksController.getAll);
 
-router.get("/:bookId", booksController.findById);
+router.get("/getById/:bookId", booksController.findById);
 
 router.post("/", booksController.createBook);
 

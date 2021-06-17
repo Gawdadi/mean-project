@@ -24,4 +24,13 @@ export class BookService {
       });
     });
   }
+
+  getAll() {
+    return new Observable((observable) => {
+      this.http.get(this.apiUrl).subscribe((res) => {
+        console.log(res);
+        observable.next();
+      });
+    });
+  }
 }

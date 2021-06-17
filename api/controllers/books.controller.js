@@ -1,18 +1,21 @@
 const BookSchema = require("../models/book.model"),
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  pageable = require("../middleware/pageable");
 
 class BooksController {
   constructor() {}
 }
 
-BooksController.prototype.getAll = (req, res, next) => {
-  BookSchema.find().then((result) => {
+BooksController.prototype.getAll =
+  (pageable.pagination(BookSchema),
+  (req, res, next) => {
     res.status(200).json({
       message: "Books fetched.",
-      data: result,
+      content: res.content,
+      pagination: res.pagination,
     });
+    // });
   });
-};
 
 BooksController.prototype.findById = (req, res, next) => {
   let bookId = req.params.bookId;

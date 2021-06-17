@@ -1,0 +1,7 @@
+GET http://localhost:9001/api/books/getAll HTTP/1.1
+
+# POST http://localhost:9001/api/books HTTP/1.1
+# {
+#   "name": "Javascript",
+#   "price": 1000,
+# }
