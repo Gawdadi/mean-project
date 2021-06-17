@@ -1,16 +1,19 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-const BookSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
-  name: {
-    required: true,
-    type: String,
+const BookSchema = new mongoose.Schema(
+  {
+    _id: Schema.Types.ObjectId,
+    name: {
+      required: true,
+      type: String,
+    },
+    price: {
+      required: true,
+      type: Number,
+    },
   },
-  price: {
-    required: true,
-    type: Number,
-  },
-});
+  { timestamps: true }
+);
 
 // Module name decides collection name in mongoDb.
 // Collection name will be 'books'.
