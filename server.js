@@ -1,4 +1,4 @@
-"use stirct";
+"use strict";
 const express = require("express"),
   cors = require("cors"),
   database = require("./lib/conf/database"),
@@ -7,6 +7,9 @@ const express = require("express"),
   cookieParser = require("cookie-parser"),
   app = express(),
   books = require("./api/routes/books.route.js"),
+  authors = require("./api/routes/authors.route.js"),
+  users = require("./api/routes/users.route.js"),
+  login = require("./api/routes/login.route.js"),
   morgan = require("morgan"),
   router = express.Router();
 
@@ -55,7 +58,9 @@ Server.prototype.listenPort = () => {
 Server.prototype.initRoutes = () => {
   app.use("/api", router);
   router.use("/books", books);
-
+  router.use("/authors", authors);
+  router.use("/users", users);
+  router.use("/login", login);
   // Always use error handling after routes.
   // Error handling.
   app.use((req, res, next) => {

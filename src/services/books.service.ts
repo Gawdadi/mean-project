@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BookService {
-  private apiUrl: string = environment.apiUrl + 'books';
+  private apiUrl: string = environment.apiUrl + 'books/';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class BookService {
 
   getAll() {
     return new Observable((observable) => {
-      this.http.get(this.apiUrl).subscribe((res) => {
+      this.http.get(this.apiUrl + 'getAll').subscribe((res) => {
         console.log(res);
         observable.next();
       });

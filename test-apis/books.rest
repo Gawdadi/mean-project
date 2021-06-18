@@ -1,7 +1,9 @@
 GET http://localhost:9001/api/books/getAll HTTP/1.1
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQwMjk1MTB9.YY7e0wu3PS0r2mcHm2GZqq7W-gHJIivZp84-8PZJ0uM
+###
 
-# POST http://localhost:9001/api/books HTTP/1.1
-# {
-#   "name": "Javascript",
-#   "price": 1000,
-# }
+POST http://localhost:9001/api/books HTTP/1.1
+{
+  "name": "Javascript",
+  "price": 1000,
+}

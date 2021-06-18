@@ -1,12 +1,17 @@
 "use stirct";
 const express = require("express"),
   router = express.Router(),
-  mongoose = require("mongoose"),
   BookSchema = require("../models/book.model"),
-  pageable = require("../middleware/pageable");
-booksController = require("../controllers/books.controller");
+  pageable = require("../middleware/pageable"),
+  booksController = require("../controllers/books.controller"),
+  authMiddleware = require("../middleware/tokenAuth");
 
-router.get("/getAll", pageable.pagination(BookSchema), booksController.getAll);
+router.get(
+  "/getAll",
+  authMiddleware.requireToken,
+  pageable.pagination(BookSchema),
+  booksController.getAll
+);
 
 router.get("/getById/:bookId", booksController.findById);
 

@@ -1,8 +1,9 @@
-const mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-const BookSchema = new mongoose.Schema(
+const mongoose = require("mongoose"),
+  schema = mongoose.Schema;
+
+const BookSchema = new schema(
   {
-    _id: Schema.Types.ObjectId,
+    _id: schema.Types.ObjectId,
     name: {
       required: true,
       type: String,
@@ -11,6 +12,11 @@ const BookSchema = new mongoose.Schema(
       required: true,
       type: Number,
     },
+    author_id: {
+      required: true,
+      type: schema.Types.ObjectId,
+    },
+    author_name: String,
   },
   { timestamps: true }
 );
