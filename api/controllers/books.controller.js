@@ -44,7 +44,8 @@ BooksController.prototype.createBook = async (req, res) => {
   const book = new bookSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
-    // createdBy: req.user.name,
+    createdBy: req.user.name,
+    createdById: req.user._id,
     price: req.body.price,
     author_id: req.body.author_id,
     author_name: author.name,

@@ -5,6 +5,7 @@ const BookSchema = new schema(
   {
     _id: schema.Types.ObjectId,
     createdBy: String,
+    createdById: String,
     name: {
       required: true,
       type: String,
