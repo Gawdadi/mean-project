@@ -20,7 +20,7 @@ LoginController.prototype.login = async (req, res, next) => {
     username: reqUser.username,
   });
   if (!userInfo)
-    return res.status(405).json({
+    return res.status(500).json({
       message: "Invalid username",
     });
 
@@ -40,7 +40,7 @@ LoginController.prototype.login = async (req, res, next) => {
         message: "Successfully Logged In.",
       });
     } else {
-      res.status(405).json({
+      res.status(500).json({
         message: "Invalid password",
       });
     }

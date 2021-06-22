@@ -16,9 +16,12 @@ export class LoginService {
     return new Observable((observable) => {
       this.http.post(this.apiUrl, data).subscribe(
         (res: LoginResponse) => {
+          localStorage.setItem('user', JSON.stringify(res));
           observable.next(res);
         },
-        (error) => {}
+        (error) => {
+          console.log(error);
+        }
       );
     });
   }

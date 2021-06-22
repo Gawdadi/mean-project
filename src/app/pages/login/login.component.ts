@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.post(this.login).subscribe((res) => {
-      localStorage.setItem('user', JSON.stringify(res));
       this.router.navigate(['/m/books']);
     });
   }

@@ -36,7 +36,7 @@ Server.prototype.initExpressMiddleWare = () => {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
+      "Origin, X-Requested-With, Content-Type, Accept, auth-token"
     );
     next();
   });
