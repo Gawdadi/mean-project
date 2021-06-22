@@ -10,7 +10,7 @@ class LoginController {
 LoginController.prototype.login = async (req, res, next) => {
   const reqUser = req.body;
   if (!reqUser.username || !reqUser.password)
-    return res.status(405).json({
+    return res.status(500).json({
       messgae: !reqUser.username
         ? "Username Cant be empty"
         : "Password cant be empty.",
