@@ -9,8 +9,8 @@ class TokenAuthentication {
 
 TokenAuthentication.prototype.requireToken = (req, res, next) => {
   const token = req.headers["auth-token"];
+  console.log(req);
   if (!token) {
-    console.log(token);
     return res.status(403).json({
       message: "Not authorised",
     });
@@ -20,6 +20,7 @@ TokenAuthentication.prototype.requireToken = (req, res, next) => {
       return res.status(403).json({
         message: "Token expired",
       });
+    console.log(req.body);
     req.user = user;
     next();
   });

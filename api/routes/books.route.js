@@ -3,15 +3,9 @@ const express = require("express"),
   router = express.Router(),
   BookSchema = require("../models/book.model"),
   pageable = require("../middleware/pageable"),
-  booksController = require("../controllers/books.controller"),
-  authMiddleware = require("../middleware/tokenAuth");
+  booksController = require("../controllers/books.controller");
 
-router.get(
-  "/getAll",
-  authMiddleware.requireToken,
-  pageable.pagination(BookSchema),
-  booksController.getAll
-);
+router.get("/getAll", pageable.pagination(BookSchema), booksController.getAll);
 
 router.get("/getById/:bookId", booksController.findById);
 

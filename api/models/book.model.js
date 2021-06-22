@@ -4,6 +4,7 @@ const mongoose = require("mongoose"),
 const BookSchema = new schema(
   {
     _id: schema.Types.ObjectId,
+    createdBy: String,
     name: {
       required: true,
       type: String,

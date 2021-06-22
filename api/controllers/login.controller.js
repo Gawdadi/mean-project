@@ -32,7 +32,7 @@ LoginController.prototype.login = async (req, res, next) => {
 
       // Create token with user info.
       const secretKey = process.env.ACCESS_TOKEN_SECRET;
-      const token = jwt.sign(userObj, secretKey, { expiresIn: "100s" });
+      const token = jwt.sign(userObj, secretKey, { expiresIn: "24h" });
 
       res.status(200).json({
         token: token,

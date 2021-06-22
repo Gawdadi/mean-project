@@ -1,9 +1,13 @@
 GET http://localhost:9001/api/books/getAll HTTP/1.1
-Auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNjg5MzksImV4cCI6MTYyNDM2OTAzOX0.rXKihE9JwZ0qMTwq373roXs3RT5VsWN8a14KZbK8z7M
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNzAwMjAsImV4cCI6MTYyNDQ1NjQyMH0.SISkQFRpnH3RV2JzUjbg1rgCF7UnaX99xNI6yW4gCdk
+
 ###
 
 POST http://localhost:9001/api/books HTTP/1.1
+  "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNzAwMjAsImV4cCI6MTYyNDQ1NjQyMH0.SISkQFRpnH3RV2JzUjbg1rgCF7UnaX99xNI6yW4gCdk"
+
 {
-  "name": "Javascript",
+  "name": "Core life concepts",
   "price": 1000,
+  "author_id" : "60cb5254ed3e41459092890a"
 }

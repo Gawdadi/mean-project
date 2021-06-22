@@ -31,11 +31,20 @@ BooksController.prototype.findById = (req, res, next) => {
 };
 
 BooksController.prototype.createBook = async (req, res) => {
+  if (!req.body)
+    return res.status(500).json({
+      message: "Data cant be empty",
+    });
+  if (!req.body.author_id)
+    return res.status(500).json({
+      message: "Author not selected.",
+    });
   const author = await authorService.getById(req.body.author_id);
 
   const book = new bookSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    // createdBy: req.user.name,
     price: req.body.price,
     author_id: req.body.author_id,
     author_name: author.name,

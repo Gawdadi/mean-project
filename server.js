@@ -11,6 +11,7 @@ const express = require("express"),
   users = require("./api/routes/users.route.js"),
   login = require("./api/routes/login.route.js"),
   morgan = require("morgan"),
+  authMiddleware = require("./api/middleware/tokenAuth"),
   router = express.Router();
 
 class Server {
@@ -25,8 +26,8 @@ class Server {
 
 // Initialize Express Middlewares
 Server.prototype.initExpressMiddleWare = () => {
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
   // app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "public")));
 
@@ -57,9 +58,9 @@ Server.prototype.listenPort = () => {
 // Load API routes and error handling
 Server.prototype.initRoutes = () => {
   app.use("/api", router);
-  router.use("/books", books);
-  router.use("/authors", authors);
-  router.use("/users", users);
+  router.use("/books", authMiddleware.requireToken, books);
+  router.use("/authors", authMiddleware.requireToken, authors);
+  router.use("/users", authMiddleware.requireToken, users);
   router.use("/login", login);
   // Always use error handling after routes.
   // Error handling.
