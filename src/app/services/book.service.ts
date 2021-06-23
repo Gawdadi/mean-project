@@ -41,8 +41,7 @@ export class BookService {
   getAll() {
     return new Observable((observable) => {
       this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
-        console.log(res);
-        observable.next();
+        observable.next(res);
       });
     });
   }

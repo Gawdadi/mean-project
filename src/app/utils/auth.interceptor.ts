@@ -28,7 +28,6 @@ export class AuthInterceptor implements HttpInterceptor {
           JSON.parse(token).token
         ),
       });
-      console.log(request.headers);
     }
     // return handle()
     return next.handle(request).pipe(

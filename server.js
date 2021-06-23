@@ -26,7 +26,6 @@ class Server {
 Server.prototype.initExpressMiddleWare = () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  // app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "public")));
 
   // Cors
@@ -59,8 +58,10 @@ Server.prototype.initRoutes = () => {
   router.use("/authors", authMiddleware.requireToken, authors);
   router.use("/users", authMiddleware.requireToken, users);
   router.use("/login", login);
+
   // Always use error handling after routes.
   // Error handling.
+
   app.use((req, res, next) => {
     const error = new Error("Id not found");
     error.status = 404;
