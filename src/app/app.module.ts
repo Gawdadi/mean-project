@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './utils/auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 const APP_INTERCEPTOR = {
   provide: HTTP_INTERCEPTORS,
@@ -29,6 +30,12 @@ const PAGES = [LoginComponent];
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-center',
+      progressBar: true,
+    }),
   ],
   providers: [APP_INTERCEPTOR],
   bootstrap: [AppComponent],
