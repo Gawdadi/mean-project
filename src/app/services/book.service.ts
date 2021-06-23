@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from 'src/app/models';
+import { Book, BookResponse } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,7 +38,7 @@ export class BookService {
     });
   }
 
-  getAll() {
+  getAll(): Observable<any> {
     return new Observable((observable) => {
       this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
         observable.next(res);

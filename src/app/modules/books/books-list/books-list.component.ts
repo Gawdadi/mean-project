@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book, BookResponse } from 'src/app/models';
 import { BookService } from 'src/app/services';
 
 @Component({
@@ -7,15 +8,16 @@ import { BookService } from 'src/app/services';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent implements OnInit {
+  books: Book[] = [];
   constructor(private booksService: BookService) {}
 
   ngOnInit() {
-    this.getById();
+    this.getAll();
   }
 
-  getById() {
-    this.booksService.getAll().subscribe((res) => {
-      console.log(res);
+  getAll() {
+    this.booksService.getAll().subscribe((res: any) => {
+      this.books = res.content;
     });
   }
 }

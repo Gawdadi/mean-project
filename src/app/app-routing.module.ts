@@ -22,6 +22,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/books/books.module').then((m) => m.BooksModule),
       },
+      {
+        path: 'authors',
+        loadChildren: () =>
+          import('./modules/authors/authors.module').then(
+            (m) => m.AuthorsModule
+          ),
+      },
     ],
   },
 ];

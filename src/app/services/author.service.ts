@@ -14,7 +14,6 @@ export class AuthorService {
   getAll() {
     return new Observable((observer) => {
       this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
-        console.log(res);
         observer.next(res);
       });
     });
