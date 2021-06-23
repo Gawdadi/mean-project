@@ -8,20 +8,22 @@ class TokenAuthentication {
 }
 
 TokenAuthentication.prototype.requireToken = (req, res, next) => {
-  const token = req.headers["auth-token"];
-  if (!token)
-    return res.status(403).json({
-      message: "Not authorised",
-    });
+  console.log(req.headers);
+  // const token = req.headers["authorization"];
+  // if (!token)
+  //   return res.status(403).json({
+  //     message: "Not authorised",
+  //   });
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err)
-      return res.status(403).json({
-        message: "Token expired",
-      });
-    req.user = user;
-    next();
-  });
+  // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  //   if (err)
+  //     return res.status(403).json({
+  //       message: "Token expired",
+  //     });
+  //   req.user = user;
+  //   next();
+  // });
+  next();
 };
 
 module.exports = new TokenAuthentication();

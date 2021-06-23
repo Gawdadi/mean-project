@@ -1,17 +1,17 @@
-export class Books {
+export class Author {
   id: string;
   name: string;
-  constructor(options?: Books) {
+  constructor(options?: Author) {
     Object.assign(this, options);
   }
 }
 
-export class BooksResponse {
+export class AuthorResponse {
   message?: string;
-  object?: BooksResponse;
+  object?: AuthorResponse;
   success?: boolean;
   title?: string;
-  constructor(options?: BooksResponse) {
+  constructor(options?: AuthorResponse) {
     Object.assign(this, options);
   }
 }

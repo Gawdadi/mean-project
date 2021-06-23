@@ -1,6 +1,4 @@
-"use strict";
 const express = require("express"),
-  cors = require("cors"),
   database = require("./lib/conf/database"),
   path = require("path"),
   port = 9001,
@@ -34,11 +32,24 @@ Server.prototype.initExpressMiddleWare = () => {
   // Cors
   app.use((req, res, next) => {
     // Use '*' to allow all origins.
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, auth-token"
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+
+    // Request methods
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
     );
+
+    // Request headers
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With,content-type, authorization"
+    );
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    // res.setHeader("Access-Control-Allow-Credentials", true);
+
     next();
   });
 };
