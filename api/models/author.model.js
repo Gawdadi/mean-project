@@ -4,6 +4,7 @@ const mongoose = require("mongoose"),
 const AuthorSchema = new schema(
   {
     _id: schema.Types.ObjectId,
+    description: String,
     name: {
       required: true,
       type: String,

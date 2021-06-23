@@ -30,6 +30,7 @@ AuthorsController.prototype.createAuthor = (req, res, next) => {
   const author = new authorSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    description: req.body.description,
   });
   author
     .save()

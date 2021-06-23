@@ -27,4 +27,10 @@ export class BookInfoComponent implements OnInit {
       console.log(res);
     });
   }
+
+  getById() {
+    this.bookService.getById('this.book').subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

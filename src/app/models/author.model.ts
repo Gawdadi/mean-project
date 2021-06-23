@@ -1,6 +1,7 @@
 export class Author {
   id: string;
   name: string;
+  description: string;
   constructor(options?: Author) {
     Object.assign(this, options);
   }

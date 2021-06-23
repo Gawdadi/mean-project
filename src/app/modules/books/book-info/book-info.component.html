@@ -6,11 +6,10 @@
         <div class="form-group">
           <label for="exampleInputEmail1">Name</label>
           <input
-            type="email"
+            name="name"
             class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
+            placeholder="Enter name"
+            [(ngModel)]="book.name"
           />
         </div>
         <div class="form-group">
