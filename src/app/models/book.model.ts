@@ -2,6 +2,7 @@ export class Book {
   id: string;
   name: string;
   author_id: string;
+  description: string;
   constructor(options?: Book) {
     Object.assign(this, options);
   }
