@@ -1,10 +1,10 @@
-<div class="book-info">
-  <div class="card">
+<div class="book-info center">
+  <div class="card w-50">
     <div class="card-header">Book Information</div>
     <div class="card-body">
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Name</label>
+          <label>Name</label>
           <input
             name="name"
             class="form-control"
@@ -13,31 +13,33 @@
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Description</label>
-          <input
-            name="name"
+          <label>Select Author</label>
+          <select
             class="form-control"
-            placeholder="Enter name"
+            name="author_id"
+            [(ngModel)]="book.author_id"
+          >
+            <option selected disabled [value]="undefined">---Author---</option>
+          </select>
+          <!-- <select
+            name="author_id"
+            class="form-control"
+            placeholder="Select author"
+            [(ngModel)]="book.author_id"
+          /> -->
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input
+            name="description"
+            class="form-control"
+            placeholder="Enter decription(if any)"
             [(ngModel)]="book.description"
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Author</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-          />
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Genre</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-          />
+          <label>Genre</label>
+          <input type="password" class="form-control" placeholder="Password" />
         </div>
       </form>
     </div>

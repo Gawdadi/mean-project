@@ -14,7 +14,9 @@ export class BookInfoComponent implements OnInit {
     private bookService: BookService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAuthors();
+  }
 
   getAuthors() {
     this.authorsService.getAll().subscribe((res) => {
