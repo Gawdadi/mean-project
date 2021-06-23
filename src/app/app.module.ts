@@ -31,7 +31,7 @@ const PAGES = [LoginComponent];
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot({
-      timeOut: 1500,
+      timeOut: 1000,
       preventDuplicates: true,
       positionClass: 'toast-bottom-center',
       progressBar: true,

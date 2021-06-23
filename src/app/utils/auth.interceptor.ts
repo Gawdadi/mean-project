@@ -21,7 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('user');
-    console.log(token);
     if (token && !request.headers.has('authorization')) {
       request = request.clone({
         headers: request.headers.append(
@@ -29,6 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
           JSON.parse(token).token
         ),
       });
+      console.log(request.headers);
     }
     // return handle()
     return next.handle(request).pipe(
