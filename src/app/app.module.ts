@@ -11,7 +11,7 @@ import { MainComponent } from './containers';
 import { LoginComponent } from './pages/login/login.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthInterceptor } from './utils/auth.interceptor';
+import { AuthInterceptor } from './utils/interceptors/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 
 const APP_INTERCEPTOR = {
