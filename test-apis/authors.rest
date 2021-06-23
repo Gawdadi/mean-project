@@ -1,2 +1,13 @@
-GET http://localhost:9001/api/books/getAll HTTP/1.1
+
+GET http://localhost:9001/api/authors/getAll HTTP/1.1
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNzAwMjAsImV4cCI6MTYyNDQ1NjQyMH0.SISkQFRpnH3RV2JzUjbg1rgCF7UnaX99xNI6yW4gCdk
+
+###
+
+POST http://localhost:9001/api/authors HTTP/1.1
 auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNzAwMjAsImV4cCI6MTYyNDQ1NjQyMH0.SISkQFRpnH3RV2JzUjbg1rgCF7UnaX99xNI6yW4gCdk
+content-type: application/json
+
+{
+  "name": "Core life concepts"
+}

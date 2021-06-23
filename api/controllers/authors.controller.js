@@ -5,9 +5,9 @@ class AuthorsController {
   constructor() {}
 }
 
-AuthorsController.prototype.getAll = (res, req, next) => {
+AuthorsController.prototype.getAll = (req, res, next) => {
   res.status(200).json({
-    message: "Authors fetched",
+    message: "Authors fetched.",
     content: res.content,
     pagination: res.pagination,
   });
@@ -30,6 +30,8 @@ AuthorsController.prototype.createAuthor = (req, res, next) => {
   const author = new authorSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    createdBy: req.user.name,
+    createdById: req.user._id,
     description: req.body.description,
   });
   author

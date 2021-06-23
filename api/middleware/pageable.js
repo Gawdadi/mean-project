@@ -19,7 +19,9 @@ Pageable.prototype.pagination = (model) => {
       res.content = await model.find().limit(size).skip(skip).exec();
       next();
     } catch (e) {
-      console.log(e);
+      res.status(500).json({
+        message: e.message,
+      });
     }
   };
 };
