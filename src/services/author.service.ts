@@ -37,4 +37,12 @@ export class AuthorService {
       });
     });
   }
+
+  getById(id: string) {
+    return new Observable((observable) => {
+      this.http.get(`${this.apiUrl}/${id}`).subscribe((res) => {
+        observable.next(res);
+      });
+    });
+  }
 }

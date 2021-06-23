@@ -1,6 +1,6 @@
-<div class="book-info center">
+<div class="author-info center">
   <div class="card w-50">
-    <div class="card-header">Book Information</div>
+    <div class="card-header">Author Information</div>
     <div class="card-body">
       <form #form="ngForm">
         <div class="form-group">
@@ -10,19 +10,8 @@
             required
             class="form-control"
             placeholder="Enter name"
-            [(ngModel)]="book.name"
+            [(ngModel)]="author.name"
           />
-        </div>
-        <div class="form-group">
-          <label>Select Author</label>
-          <select
-            class="form-control"
-            required
-            name="author_id"
-            [(ngModel)]="book.author_id"
-          >
-            <option selected disabled [value]="undefined">---Author---</option>
-          </select>
         </div>
         <div class="form-group">
           <label>Description</label>
@@ -31,7 +20,7 @@
             required
             class="form-control"
             placeholder="Enter decription(if any)"
-            [(ngModel)]="book.description"
+            [(ngModel)]="author.description"
           />
         </div>
       </form>

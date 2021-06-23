@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'src/app/models';
-import { AuthorService, BookService } from 'src/services';
+import { Author } from 'src/app/models';
+import { AuthorService } from 'src/services';
 
 @Component({
-  selector: 'app-book-info',
-  templateUrl: './book-info.component.html',
-  styleUrls: ['./book-info.component.scss'],
+  selector: 'app-author-info',
+  templateUrl: './author-info.component.html',
+  styleUrls: ['./author-info.component.scss'],
 })
-export class BookInfoComponent implements OnInit {
-  book: Book = new Book();
-  bookId: string | null;
+export class AuthorInfoComponent implements OnInit {
+  author: Author = new Author();
+  authorId: string | null;
   constructor(
     private authorsService: AuthorService,
-    private bookService: BookService,
     private route: ActivatedRoute
   ) {}
 
@@ -24,17 +23,17 @@ export class BookInfoComponent implements OnInit {
 
   getParams() {
     this.route.paramMap.subscribe((params) => {
-      this.bookId = params.get('bookId') || null;
-      if (this.bookId !== 'add') {
+      this.authorId = params.get('authorId') || null;
+      if (this.authorId !== 'add') {
         this.getById();
       }
     });
   }
 
   onSubmit() {
-    console.log(this.book);
+    console.log(this.author);
     return;
-    if (this.bookId === 'add') this.put();
+    if (this.authorId === 'add') this.put();
     else this.post();
   }
 
@@ -45,19 +44,19 @@ export class BookInfoComponent implements OnInit {
   }
 
   post() {
-    this.bookService.post(this.book).subscribe((res) => {
+    this.authorsService.post(this.author).subscribe((res) => {
       console.log(res);
     });
   }
 
   put() {
-    this.bookService.post(this.book).subscribe((res) => {
+    this.authorsService.post(this.author).subscribe((res) => {
       console.log(res);
     });
   }
 
   getById() {
-    this.bookService.getById('this.book').subscribe((res) => {
+    this.authorsService.getById('this.author').subscribe((res) => {
       console.log(res);
     });
   }
