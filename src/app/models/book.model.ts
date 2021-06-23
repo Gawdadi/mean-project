@@ -1,19 +1,18 @@
-export class Book {
-  id: string;
+import { ModelBaseClass } from '../utils/baseClass/modelBaseClass';
+
+export class Book extends ModelBaseClass {
   name: string;
   author_id: string;
   description: string;
-  constructor(options?: Book) {
-    Object.assign(this, options);
+  constructor() {
+    super();
   }
 }
 
 export class BookResponse {
   message?: string;
-  object?: BookResponse;
+  object?: Book;
   success?: boolean;
   title?: string;
-  constructor(options?: BookResponse) {
-    Object.assign(this, options);
-  }
+  constructor() {}
 }

@@ -1,9 +1,10 @@
-export class Author {
-  id: string;
+import { ModelBaseClass } from '../utils/baseClass/modelBaseClass';
+
+export class Author extends ModelBaseClass {
   name: string;
   description: string;
-  constructor(options?: Author) {
-    Object.assign(this, options);
+  constructor() {
+    super();
   }
 }
 
@@ -12,7 +13,5 @@ export class AuthorResponse {
   object?: AuthorResponse;
   success?: boolean;
   title?: string;
-  constructor(options?: AuthorResponse) {
-    Object.assign(this, options);
-  }
+  constructor() {}
 }
