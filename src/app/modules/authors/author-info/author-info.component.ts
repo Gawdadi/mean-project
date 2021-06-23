@@ -18,7 +18,6 @@ export class AuthorInfoComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
-    this.getAuthors();
   }
 
   getParams() {
@@ -35,12 +34,6 @@ export class AuthorInfoComponent implements OnInit {
     return;
     if (this.authorId === 'add') this.put();
     else this.post();
-  }
-
-  getAuthors() {
-    this.authorsService.getAll().subscribe((res) => {
-      console.log(res);
-    });
   }
 
   post() {
