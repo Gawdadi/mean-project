@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Author } from 'src/app/models';
+import { Author, AuthorResponse } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -19,29 +19,29 @@ export class AuthorService {
     });
   }
 
-  post(data: Author) {
+  post(data: Author): Observable<Author> {
     return new Observable((observer) => {
-      this.http.post(this.apiUrl, data).subscribe((res) => {
-        console.log(res);
-        observer.next(res);
+      this.http.post(this.apiUrl, data).subscribe((res: AuthorResponse) => {
+        observer.next(res.object);
       });
     });
   }
 
-  put(data: Author) {
+  put(data: Author): Observable<Author> {
     return new Observable((observer) => {
-      this.http.put(this.apiUrl, data).subscribe((res) => {
-        console.log(res);
-        observer.next(res);
+      this.http.put(this.apiUrl, data).subscribe((res: AuthorResponse) => {
+        observer.next(res.object);
       });
     });
   }
 
-  getById(id: string) {
-    return new Observable((observable) => {
-      this.http.get(`${this.apiUrl}/${id}`).subscribe((res) => {
-        observable.next(res);
-      });
+  getById(id: string): Observable<Author> {
+    return new Observable((observer) => {
+      this.http
+        .get(`${this.apiUrl}/getById/${id}`)
+        .subscribe((res: AuthorResponse) => {
+          observer.next(res.object);
+        });
     });
   }
 }

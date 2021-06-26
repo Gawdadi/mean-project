@@ -10,7 +10,7 @@ import { AuthorService } from 'src/app/services';
 })
 export class AuthorInfoComponent implements OnInit {
   author: Author = new Author();
-  authorId: string | null;
+  authorId: string;
   constructor(
     private authorsService: AuthorService,
     private route: ActivatedRoute
@@ -22,7 +22,7 @@ export class AuthorInfoComponent implements OnInit {
 
   getParams() {
     this.route.paramMap.subscribe((params) => {
-      this.authorId = params.get('authorId') || null;
+      this.authorId = params.get('authorId');
       if (this.authorId !== 'add') {
         this.getById();
       }
@@ -30,27 +30,25 @@ export class AuthorInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.author);
-    return;
-    if (this.authorId === 'add') this.put();
-    else this.post();
+    if (this.authorId === 'add') this.post();
+    else this.put();
   }
 
   post() {
     this.authorsService.post(this.author).subscribe((res) => {
-      console.log(res);
+      this.author = res;
     });
   }
 
   put() {
-    this.authorsService.post(this.author).subscribe((res) => {
-      console.log(res);
+    this.authorsService.put(this.author).subscribe((res) => {
+      this.author = res;
     });
   }
 
   getById() {
-    this.authorsService.getById('this.author').subscribe((res) => {
-      console.log(res);
+    this.authorsService.getById(this.authorId).subscribe((res) => {
+      this.author = res;
     });
   }
 }

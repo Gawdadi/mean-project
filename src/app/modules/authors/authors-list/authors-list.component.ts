@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Author } from 'src/app/models';
 import { AuthorService } from 'src/app/services';
 
@@ -9,15 +10,25 @@ import { AuthorService } from 'src/app/services';
 })
 export class AuthorsListComponent implements OnInit {
   authors: Author[] = [];
-  constructor(private authorService: AuthorService) {}
+
+  constructor(
+    private authorService: AuthorService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.getById();
+    this.getAll();
   }
 
-  getById() {
-    this.authorService.getAll().subscribe((res) => {
-      console.log(res);
+  getAll() {
+    this.authorService.getAll().subscribe((res: any) => {
+      this.authors = res.content;
     });
+  }
+
+  onEdit(authorId: string) {
+    console.log(authorId);
+    this.router.navigate([authorId], { relativeTo: this.route });
   }
 }

@@ -1,3 +1,4 @@
+import { Response } from '../utils/baseClass';
 import { ModelBaseClass } from '../utils/baseClass/modelBaseClass';
 
 export class Author extends ModelBaseClass {
@@ -8,10 +9,9 @@ export class Author extends ModelBaseClass {
   }
 }
 
-export class AuthorResponse {
-  message?: string;
-  object?: AuthorResponse;
-  success?: boolean;
-  title?: string;
-  constructor() {}
+export class AuthorResponse extends Response {
+  object?: Author;
+  constructor() {
+    super();
+  }
 }

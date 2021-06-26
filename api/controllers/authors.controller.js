@@ -19,7 +19,10 @@ AuthorsController.prototype.findById = (req, res, next) => {
     .findById(authorId)
     .exec()
     .then((result) => {
-      res.status(200).json(result);
+      res.status(200).json({
+        message: result.name + " successfully fetched.",
+        object: result,
+      });
     })
     .catch((error) => {
       res.status(500).json(error);
@@ -49,14 +52,14 @@ AuthorsController.prototype.createAuthor = (req, res, next) => {
     });
 };
 
-AuthorsController.prototype.updateAuthor = (res, req, next) => {
+AuthorsController.prototype.updateAuthor = (req, res, next) => {
   authorSchema
     .findOneAndUpdate(
       {
         _id: req.body._id,
       },
-      { $set: { name: req.body.name, price: req.body.price } },
-      { upsert: true }
+      { $set: { name: req.body.name } },
+      { new: true }
     )
     .then((result) => {
       res.status(200).json({
@@ -69,7 +72,7 @@ AuthorsController.prototype.updateAuthor = (res, req, next) => {
     });
 };
 
-AuthorsController.prototype.deleteAuthor = (res, req, next) => {
+AuthorsController.prototype.deleteAuthor = (req, res, next) => {
   const bookId = req.params.authorId;
   authorSchema
     .deleteOne({ _id: authorId })
