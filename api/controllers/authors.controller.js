@@ -20,7 +20,7 @@ AuthorsController.prototype.findById = (req, res, next) => {
     .exec()
     .then((result) => {
       res.status(200).json({
-        message: result.name + " successfully fetched.",
+        message: "Successfully fetched.",
         object: result,
       });
     })
