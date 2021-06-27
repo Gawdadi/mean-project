@@ -5,11 +5,17 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2
 ###
 
 POST http://localhost:9001/api/books HTTP/1.1
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQzNzAwMjAsImV4cCI6MTYyNDQ1NjQyMH0.SISkQFRpnH3RV2JzUjbg1rgCF7UnaX99xNI6yW4gCdk
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQ3OTk1NDIsImV4cCI6MTYyNDg4NTk0Mn0.x8Culz-luCReG7m8VmGlCrd-EL819K6vSV0MPGiHzig
 content-type: application/json
 
 {
-  "name": "Core life concepts",
+  "name": "Jana TT",
   "price": 1000,
-  "author_id" : "60cb5254ed3e41459092890a"
+  "author_id" : "60d87f74d3a48bc699dfd2fd"
 }
+
+###
+
+GET http://localhost:9001/api/books/getWithAuthors HTTP/1.1
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNjOWYyYTM4YTA2MDVhZTc5YjQxZDgiLCJuYW1lIjoiQWRpdHlhIEFkaGlrYXJpIiwidXNlcm5hbWUiOiJmcm9udF9kZXNrIiwiX192IjowLCJpYXQiOjE2MjQ3OTk1NDIsImV4cCI6MTYyNDg4NTk0Mn0.x8Culz-luCReG7m8VmGlCrd-EL819K6vSV0MPGiHzig
+content-type: application/json

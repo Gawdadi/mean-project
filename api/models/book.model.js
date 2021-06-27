@@ -19,7 +19,6 @@ const BookSchema = new schema(
       required: true,
       type: schema.Types.ObjectId,
     },
-    author_name: String,
   },
   { timestamps: true }
 );

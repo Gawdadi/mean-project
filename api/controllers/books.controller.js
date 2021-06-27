@@ -1,6 +1,6 @@
+const { __awaiter } = require("tslib");
 const bookSchema = require("../models/book.model"),
   mongoose = require("mongoose"),
-  pageable = require("../middleware/pageable"),
   authorSchema = require("../models/author.model"),
   authorService = require("../../lib/services/author.service");
 
@@ -14,7 +14,24 @@ BooksController.prototype.getAll = (req, res, next) => {
     content: res.content,
     pagination: res.pagination,
   });
-  // });
+};
+
+BooksController.prototype.getWithAuthors = async (req, res, next) => {
+  try {
+    const unique = [...new Set(res.content.map((item) => item.author_id))];
+    const authors = await authorService.getByIds(unique);
+    const authorsObj = {};
+    authors.forEach((elem) => {
+      if (!authorsObj[elem._id]) authorsObj[elem._id] = elem;
+    });
+    console.log(authorsObj);
+    res.status(200).json({
+      message: "Books fetched.",
+      content: res.content,
+      authors: authorsObj,
+      pagination: res.pagination,
+    });
+  } catch {}
 };
 
 BooksController.prototype.findById = (req, res, next) => {
@@ -76,7 +93,6 @@ BooksController.prototype.updateBook = async (req, res) => {
           name: req.body.name,
           price: req.body.price,
           author_id: req.body.author_id,
-          author_name: await authorSchema.findById(req.body.author_id).exec(),
         },
       },
       { upsert: true }

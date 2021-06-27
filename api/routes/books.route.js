@@ -7,6 +7,12 @@ const express = require("express"),
 
 router.get("/getAll", pageable.pagination(BookSchema), booksController.getAll);
 
+router.get(
+  "/getWithAuthors",
+  pageable.pagination(BookSchema),
+  booksController.getWithAuthors
+);
+
 router.get("/getById/:bookId", booksController.findById);
 
 router.post("/", booksController.createBook);
