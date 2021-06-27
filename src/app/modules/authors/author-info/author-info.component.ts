@@ -10,6 +10,7 @@ import { AuthorService } from 'src/app/services';
 })
 export class AuthorInfoComponent implements OnInit {
   author: Author = new Author();
+  isLoading: boolean = false;
   authorId: string;
   constructor(
     private authorsService: AuthorService,
@@ -30,6 +31,7 @@ export class AuthorInfoComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
     if (this.authorId === 'add') this.post();
     else this.put();
   }
@@ -37,12 +39,14 @@ export class AuthorInfoComponent implements OnInit {
   post() {
     this.authorsService.post(this.author).subscribe((res) => {
       this.author = res;
+      this.isLoading = false;
     });
   }
 
   put() {
     this.authorsService.put(this.author).subscribe((res) => {
       this.author = res;
+      this.isLoading = false;
     });
   }
 
