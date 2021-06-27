@@ -32,10 +32,8 @@ export class BookInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.book);
-    return;
-    if (this.bookId === 'add') this.put();
-    else this.post();
+    if (this.bookId === 'add') this.post();
+    else this.put();
   }
 
   getAuthors() {
@@ -57,7 +55,7 @@ export class BookInfoComponent implements OnInit {
   }
 
   getById() {
-    this.bookService.getById('this.book').subscribe((res) => {
+    this.bookService.getById(this.bookId).subscribe((res) => {
       console.log(res);
     });
   }

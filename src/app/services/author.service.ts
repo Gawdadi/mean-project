@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Author, AuthorResponse } from 'src/app/models';
 import { environment } from 'src/environments/environment';
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthorService {
   private apiUrl: string = environment.apiUrl + 'authors';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastrService: ToastrService) {}
 
   getAll() {
     return new Observable((observer) => {
@@ -30,6 +31,7 @@ export class AuthorService {
   put(data: Author): Observable<Author> {
     return new Observable((observer) => {
       this.http.put(this.apiUrl, data).subscribe((res: AuthorResponse) => {
+        this.toastrService.success(res.message);
         observer.next(res.object);
       });
     });

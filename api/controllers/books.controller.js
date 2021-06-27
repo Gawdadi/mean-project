@@ -56,7 +56,7 @@ BooksController.prototype.createBook = async (req, res) => {
     .save()
     .then((result) => {
       res.status(200).json({
-        message: result.name + " successfully added.",
+        message: "Successfully created.",
         object: result,
       });
     })

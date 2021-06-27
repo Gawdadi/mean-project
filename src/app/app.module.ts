@@ -4,6 +4,7 @@ import {
   AppSideNavBarComponent,
   AppToolbarComponent,
 } from 'src/app/components';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,13 +26,14 @@ const PAGES = [LoginComponent];
 @NgModule({
   declarations: [AppComponent, ...COTAINERS, ...COMPONENTS, ...PAGES],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot({
-      timeOut: 1000,
+      timeOut: 2000,
       preventDuplicates: true,
       positionClass: 'toast-bottom-center',
       progressBar: true,

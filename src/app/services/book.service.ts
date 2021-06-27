@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Book, BookResponse } from 'src/app/models';
 import { environment } from 'src/environments/environment';
@@ -10,39 +11,40 @@ import { environment } from 'src/environments/environment';
 export class BookService {
   private apiUrl: string = environment.apiUrl + 'books';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastrService: ToastrService) {}
 
-  post(data: Book) {
+  getAll() {
     return new Observable((observer) => {
-      this.http.post(this.apiUrl, data).subscribe((res) => {
-        console.log(res);
-        observer.next(res);
-      });
-    });
-  }
-
-  put(data: Book) {
-    return new Observable((observer) => {
-      this.http.put(this.apiUrl, data).subscribe((res) => {
-        console.log(res);
-        observer.next(res);
-      });
-    });
-  }
-
-  getById(id: string) {
-    return new Observable((observable) => {
-      this.http.get(`${this.apiUrl}/${id}`).subscribe((res) => {
-        observable.next(res);
-      });
-    });
-  }
-
-  getAll(): Observable<any> {
-    return new Observable((observable) => {
       this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
-        observable.next(res);
+        observer.next(res);
       });
+    });
+  }
+
+  post(data: Book): Observable<Book> {
+    return new Observable((observer) => {
+      this.http.post(this.apiUrl, data).subscribe((res: BookResponse) => {
+        this.toastrService.success(res.message, 'Successfully created');
+        observer.next(res.object);
+      });
+    });
+  }
+
+  put(data: Book): Observable<Book> {
+    return new Observable((observer) => {
+      this.http.put(this.apiUrl, data).subscribe((res: BookResponse) => {
+        observer.next(res.object);
+      });
+    });
+  }
+
+  getById(id: string): Observable<Book> {
+    return new Observable((observer) => {
+      this.http
+        .get(`${this.apiUrl}/getById/${id}`)
+        .subscribe((res: BookResponse) => {
+          observer.next(res.object);
+        });
     });
   }
 }
