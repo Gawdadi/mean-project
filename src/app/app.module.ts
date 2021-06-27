@@ -21,8 +21,10 @@ const APP_INTERCEPTOR = {
   multi: true,
 };
 const COTAINERS = [MainComponent];
+const COMMON = [];
 const COMPONENTS = [AppToolbarComponent, AppSideNavBarComponent];
 const PAGES = [LoginComponent];
+
 @NgModule({
   declarations: [AppComponent, ...COTAINERS, ...COMPONENTS, ...PAGES],
   imports: [
@@ -32,6 +34,7 @@ const PAGES = [LoginComponent];
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ...COMMON,
     ToastrModule.forRoot({
       timeOut: 2000,
       preventDuplicates: true,
