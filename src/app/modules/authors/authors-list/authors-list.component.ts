@@ -21,14 +21,17 @@ export class AuthorsListComponent implements OnInit {
     this.getAll();
   }
 
+  create() {
+    this.router.navigate(['add'], { relativeTo: this.route });
+  }
+
+  onEdit(authorId: string) {
+    this.router.navigate([authorId], { relativeTo: this.route });
+  }
+
   getAll() {
     this.authorService.getAll().subscribe((res: any) => {
       this.authors = res.content;
     });
-  }
-
-  onEdit(authorId: string) {
-    console.log(authorId);
-    this.router.navigate([authorId], { relativeTo: this.route });
   }
 }
