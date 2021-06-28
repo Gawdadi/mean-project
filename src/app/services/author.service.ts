@@ -22,18 +22,30 @@ export class AuthorService {
 
   post(data: Author): Observable<Author> {
     return new Observable((observer) => {
-      this.http.post(this.apiUrl, data).subscribe((res: AuthorResponse) => {
-        observer.next(res.object);
-      });
+      this.http.post(this.apiUrl, data).subscribe(
+        (res: AuthorResponse) => {
+          observer.next(res.object);
+        },
+        (error) => {
+          this.toastrService.error(error.error.message);
+          observer.error(error);
+        }
+      );
     });
   }
 
   put(data: Author): Observable<Author> {
     return new Observable((observer) => {
-      this.http.put(this.apiUrl, data).subscribe((res: AuthorResponse) => {
-        this.toastrService.success(res.message);
-        observer.next(res.object);
-      });
+      this.http.put(this.apiUrl, data).subscribe(
+        (res: AuthorResponse) => {
+          this.toastrService.success(res.message);
+          observer.next(res.object);
+        },
+        (error) => {
+          this.toastrService.error(error.error.message);
+          observer.error(error);
+        }
+      );
     });
   }
 

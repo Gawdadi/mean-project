@@ -21,6 +21,10 @@ export class BooksListComponent implements OnInit {
     this.getWithAuthors();
   }
 
+  create() {
+    this.router.navigate(['add'], { relativeTo: this.route });
+  }
+
   getWithAuthors() {
     this.booksService.getWithAuthors().subscribe((res: any) => {
       this.books = res.content;
@@ -29,7 +33,6 @@ export class BooksListComponent implements OnInit {
   }
 
   onEdit(authorId: string) {
-    console.log(authorId);
     this.router.navigate([authorId], { relativeTo: this.route });
   }
 }

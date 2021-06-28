@@ -2,6 +2,7 @@ import { ModelBaseClass } from '../utils/baseClass/modelBaseClass';
 
 export class Book extends ModelBaseClass {
   name: string;
+  price: number;
   author_id: string;
   description: string;
   constructor() {

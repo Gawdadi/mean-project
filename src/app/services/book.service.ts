@@ -31,18 +31,32 @@ export class BookService {
 
   post(data: Book): Observable<Book> {
     return new Observable((observer) => {
-      this.http.post(this.apiUrl, data).subscribe((res: BookResponse) => {
-        this.toastrService.success(res.message, 'Successfully created');
-        observer.next(res.object);
-      });
+      this.http.post(this.apiUrl, data).subscribe(
+        (res: BookResponse) => {
+          this.toastrService.success(res.message);
+          observer.next(res.object);
+        },
+        (error) => {
+          console.log(error);
+          this.toastrService.error(error.error.message);
+          observer.error(error);
+        }
+      );
     });
   }
 
   put(data: Book): Observable<Book> {
     return new Observable((observer) => {
-      this.http.put(this.apiUrl, data).subscribe((res: BookResponse) => {
-        observer.next(res.object);
-      });
+      this.http.put(this.apiUrl, data).subscribe(
+        (res: BookResponse) => {
+          this.toastrService.success(res.message);
+          observer.next(res.object);
+        },
+        (error) => {
+          this.toastrService.error(error.error.message);
+          observer.error(error);
+        }
+      );
     });
   }
 
