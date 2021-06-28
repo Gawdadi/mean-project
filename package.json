@@ -6,7 +6,7 @@
     "start": "NODE_ENV=development nodemon server",
     "start-nodejs-prod": "NODE_ENV=production node server",
     "startserver": "nodemon server.js",
-    "build": "ng build --base-href https://gawdadi.github.io/mean-project/  ",
+    "build": "ng build --base-href https://gawdadi.github.io/mean-project/login ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
