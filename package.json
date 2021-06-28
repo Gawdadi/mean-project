@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "NODE_ENV=development nodemon server",
+    "start-nodejs-prod": "NODE_ENV=production node server",
     "startserver": "nodemon server.js",
-    "build": "ng build",
+    "build": "ng build --base-href https://gawdadi.github.io/mean-project/  ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
