@@ -40,7 +40,10 @@ BooksController.prototype.findById = (req, res, next) => {
     .findById(bookId)
     .exec()
     .then((result) => {
-      res.status(200).json(result);
+      res.status(200).json({
+        message: "Successfully fetched.",
+        object: result,
+      });
     })
     .catch((error) => {
       res.status(500).json(error);
@@ -66,7 +69,6 @@ BooksController.prototype.createBook = async (req, res) => {
     createdById: req.user._id,
     price: req.body.price,
     author_id: req.body.author_id,
-    author_name: author.name,
   });
 
   book

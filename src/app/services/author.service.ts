@@ -12,7 +12,7 @@ export class AuthorService {
   private apiUrl: string = environment.apiUrl + 'authors';
   constructor(private http: HttpClient, private toastrService: ToastrService) {}
 
-  getAll() {
+  getAll(): Observable<any> {
     return new Observable((observer) => {
       this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
         observer.next(res);

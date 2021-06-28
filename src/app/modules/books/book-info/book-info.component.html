@@ -22,6 +22,9 @@
             [(ngModel)]="book.author_id"
           >
             <option selected disabled [value]="undefined">---Author---</option>
+            <option *ngFor="let author of authors" [value]="author._id">
+              {{ author.name }}
+            </option>
           </select>
         </div>
         <div class="form-group">
@@ -47,3 +50,5 @@
     </div>
   </div>
 </div>
+
+<app-loader *ngIf="isLoading"></app-loader>
