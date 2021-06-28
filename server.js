@@ -1,9 +1,7 @@
 "use strict";
-
 const express = require("express"),
   database = require("./lib/conf/database"),
   path = require("path"),
-  port = 9001,
   cors = require("cors"),
   app = express(),
   books = require("./api/routes/books.route.js"),
@@ -11,6 +9,7 @@ const express = require("express"),
   users = require("./api/routes/users.route.js"),
   login = require("./api/routes/login.route.js"),
   morgan = require("morgan"),
+  config = require("./lib/conf/appconfig"),
   authMiddleware = require("./api/middleware/tokenAuth"),
   router = express.Router();
 
@@ -55,8 +54,8 @@ Server.prototype.initDatabase = () => {
 
 // Listen port
 Server.prototype.listenPort = () => {
-  app.listen(port, () => {
-    console.log("Server started at port " + port);
+  app.listen(config.app.port, () => {
+    console.log("Server started at port " + config.app.port);
   });
 };
 

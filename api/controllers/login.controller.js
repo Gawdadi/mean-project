@@ -1,8 +1,7 @@
 const bcrypt = require("bcrypt"),
   userSchema = require("../models/user.model"),
   jwt = require("jsonwebtoken"),
-  dotenv = require("dotenv");
-dotenv.config();
+  config = require("../../lib/conf/appconfig");
 class LoginController {
   constructor() {}
 }
@@ -31,8 +30,9 @@ LoginController.prototype.login = async (req, res, next) => {
       delete userObj.password;
 
       // Create token with user info.
-      const secretKey = process.env.ACCESS_TOKEN_SECRET;
-      const token = jwt.sign(userObj, secretKey, { expiresIn: "24h" });
+      const token = jwt.sign(userObj, config.db.jwt_secret, {
+        expiresIn: config.db.jwt_expiresin,
+      });
 
       res.status(200).json({
         token: token,
