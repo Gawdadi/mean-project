@@ -1,4 +1,3 @@
-"use stirct";
 const express = require("express"),
   router = express.Router(),
   BookSchema = require("../models/book.model"),
