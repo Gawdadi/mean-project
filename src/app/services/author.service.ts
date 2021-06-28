@@ -24,6 +24,7 @@ export class AuthorService {
     return new Observable((observer) => {
       this.http.post(this.apiUrl, data).subscribe(
         (res: AuthorResponse) => {
+          this.toastrService.success(res.message);
           observer.next(res.object);
         },
         (error) => {

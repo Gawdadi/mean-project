@@ -48,6 +48,7 @@ export class BookInfoComponent implements OnInit {
   post() {
     this.bookService.post(this.book).subscribe(
       (res) => {
+        this.book = new Book();
         this.isLoading = false;
       },
       (error) => {

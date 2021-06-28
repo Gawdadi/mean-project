@@ -37,17 +37,27 @@ export class AuthorInfoComponent implements OnInit {
   }
 
   post() {
-    this.authorsService.post(this.author).subscribe((res) => {
-      this.author = res;
-      this.isLoading = false;
-    });
+    this.authorsService.post(this.author).subscribe(
+      (res) => {
+        this.author = new Author();
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+      }
+    );
   }
 
   put() {
-    this.authorsService.put(this.author).subscribe((res) => {
-      this.author = res;
-      this.isLoading = false;
-    });
+    this.authorsService.put(this.author).subscribe(
+      (res) => {
+        this.author = res;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+      }
+    );
   }
 
   getById() {
