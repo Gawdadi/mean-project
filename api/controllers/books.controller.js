@@ -1,7 +1,6 @@
 const { __awaiter } = require("tslib");
 const bookSchema = require("../models/book.model"),
   mongoose = require("mongoose"),
-  authorSchema = require("../models/author.model"),
   authorService = require("../../lib/services/author.service");
 
 class BooksController {
@@ -24,7 +23,6 @@ BooksController.prototype.getWithAuthors = async (req, res, next) => {
     authors.forEach((elem) => {
       if (!authorsObj[elem._id]) authorsObj[elem._id] = elem;
     });
-    console.log(authorsObj);
     res.status(200).json({
       message: "Books fetched.",
       content: res.content,
@@ -59,8 +57,6 @@ BooksController.prototype.createBook = async (req, res) => {
     return res.status(500).json({
       message: "Author not selected.",
     });
-  const author = await authorService.getById(req.body.author_id);
-
   const book = new bookSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -97,7 +93,7 @@ BooksController.prototype.updateBook = async (req, res) => {
           author_id: req.body.author_id,
         },
       },
-      { upsert: true }
+      { new: true }
     )
     .then((result) => {
       res.status(200).json({

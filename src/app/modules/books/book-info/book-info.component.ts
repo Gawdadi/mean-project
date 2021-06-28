@@ -57,7 +57,7 @@ export class BookInfoComponent implements OnInit {
   }
 
   put() {
-    this.bookService.post(this.book).subscribe(
+    this.bookService.put(this.book).subscribe(
       (res) => {
         this.book = res;
         this.isLoading = false;
