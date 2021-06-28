@@ -21,6 +21,14 @@ export class BookService {
     });
   }
 
+  getWithAuthors() {
+    return new Observable((observer) => {
+      this.http.get(`${this.apiUrl}/getWithAuthors`).subscribe((res) => {
+        observer.next(res);
+      });
+    });
+  }
+
   post(data: Book): Observable<Book> {
     return new Observable((observer) => {
       this.http.post(this.apiUrl, data).subscribe((res: BookResponse) => {

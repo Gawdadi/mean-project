@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/models';
+import { Author, Book } from 'src/app/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/services';
 
@@ -10,6 +10,7 @@ import { BookService } from 'src/app/services';
 })
 export class BooksListComponent implements OnInit {
   books: Book[] = [];
+  authorMap: any = {};
   constructor(
     private booksService: BookService,
     private router: Router,
@@ -17,12 +18,13 @@ export class BooksListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getAll();
+    this.getWithAuthors();
   }
 
-  getAll() {
-    this.booksService.getAll().subscribe((res: any) => {
+  getWithAuthors() {
+    this.booksService.getWithAuthors().subscribe((res: any) => {
       this.books = res.content;
+      this.authorMap = res.authors;
     });
   }
 
