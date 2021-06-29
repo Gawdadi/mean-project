@@ -37,7 +37,7 @@ StudentContoller.prototype.createStudent = (req, res, next) => {
     createdById: req.user._id,
     section: req.body.section,
     rno: req.body.rno,
-    IdNumber: req.body.IdNumber,
+    uniqueId: req.body.uniqueId,
     class: req.body.class,
   });
 

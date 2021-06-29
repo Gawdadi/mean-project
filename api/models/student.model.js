@@ -22,7 +22,7 @@ const studentSchema = new schema(
       type: Number,
       required: true,
     },
-    IdNumber: {
+    uniqueId: {
       type: String,
       required: true,
     },

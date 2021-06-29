@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken"),
-  dotenv = require("dotenv");
-
-dotenv.config();
+  config = require("../../lib/conf/appconfig");
 
 class TokenAuthentication {
   constructor() {}
@@ -13,8 +11,7 @@ TokenAuthentication.prototype.requireToken = (req, res, next) => {
     return res.status(403).json({
       message: "Not authorised",
     });
-
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, config.auth.jwt_secret, (err, user) => {
     if (err)
       return res.status(403).json({
         message: "Token expired",

@@ -1,0 +1,12 @@
+
+POST {{apiUrl}}/students HTTP/1.1
+authorization: {{token}}
+Content-Type : {{content-type}}
+
+{
+    "name":"Lana rhodes",
+    "rno":"69",
+    "section" : "A",
+    "class" : "XII",
+    "uniqueId" : "69AXII"
+}
