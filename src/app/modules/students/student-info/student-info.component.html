@@ -1,0 +1,68 @@
+<div class="student-info center">
+  <div class="card w-50">
+    <div class="card-header">Student Information</div>
+    <div class="card-body">
+      <form #form="ngForm">
+        <div class="form-group">
+          <label>Name</label>
+          <input
+            name="name"
+            required
+            class="form-control"
+            placeholder="Enter name"
+            [(ngModel)]="student.name"
+          />
+        </div>
+        <div class="form-group">
+          <label>Class</label>
+          <input
+            type="text"
+            name="class"
+            required
+            class="form-control"
+            placeholder="Enter class"
+            [(ngModel)]="student.class"
+          />
+        </div>
+        <div class="form-group">
+          <label>Section</label>
+          <input
+            name="section"
+            class="form-control"
+            placeholder="Enter section(if any)"
+            [(ngModel)]="student.section"
+          />
+        </div>
+        <div class="form-group">
+          <label>Roll number</label>
+          <input
+            name="rno"
+            class="form-control"
+            placeholder="Enter roll number(if any)"
+            [(ngModel)]="student.rno"
+          />
+        </div>
+        <div class="form-group">
+          <label>Id number</label>
+          <input
+            name="uniqueId"
+            class="form-control"
+            placeholder="Enter Id number(if any)"
+            [(ngModel)]="student.uniqueId"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button
+        (click)="onSubmit()"
+        class="btn btn-primary btn-sm"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>
