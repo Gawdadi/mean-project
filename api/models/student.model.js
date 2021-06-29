@@ -1,5 +1,6 @@
 const mongoose = require("mongoose"),
-  schema = mongoose.Schema;
+  schema = mongoose.Schema,
+  Enum = require("../../lib/enums/enums");
 
 const studentSchema = new schema(
   {
@@ -12,6 +13,7 @@ const studentSchema = new schema(
     createdById: String,
     class: {
       type: String,
+      enum: Enum.Class,
       required: true,
     },
     section: {

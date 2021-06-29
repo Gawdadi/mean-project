@@ -7,6 +7,6 @@ Content-Type : {{content-type}}
     "name":"Lana rhodes",
     "rno":"69",
     "section" : "A",
-    "class" : "XII",
+    "class" : "XI",
     "uniqueId" : "69AXII"
 }

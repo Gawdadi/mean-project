@@ -9,7 +9,8 @@ import { Student, StudentResponse } from '../models';
   providedIn: 'root',
 })
 export class StudentService {
-  private apiUrl: string = environment.apiUrl + 'authors';
+  private apiUrl: string = environment.apiUrl + 'students';
+
   constructor(private http: HttpClient, private toastrService: ToastrService) {}
 
   post(data: Student): Observable<Student> {
