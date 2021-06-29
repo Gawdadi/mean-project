@@ -28,10 +28,9 @@ LoginController.prototype.login = async (req, res, next) => {
       // Remove password before sending user info.
       var userObj = userInfo.toObject();
       delete userObj.password;
-
       // Create token with user info.
-      const token = jwt.sign(userObj, config.db.jwt_secret, {
-        expiresIn: config.db.jwt_expiresin,
+      const token = jwt.sign(userObj, config.auth.jwt_secret, {
+        expiresIn: config.auth.jwt_expiresin,
       });
 
       res.status(200).json({
@@ -45,6 +44,7 @@ LoginController.prototype.login = async (req, res, next) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: error,
     });

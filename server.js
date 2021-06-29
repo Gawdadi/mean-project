@@ -6,6 +6,7 @@ const express = require("express"),
   app = express(),
   books = require("./api/routes/books.route.js"),
   authors = require("./api/routes/authors.route.js"),
+  students = require("./api/routes/students.route.js"),
   users = require("./api/routes/users.route.js"),
   login = require("./api/routes/login.route.js"),
   morgan = require("morgan"),
@@ -57,6 +58,7 @@ Server.prototype.initRoutes = () => {
   app.use("/api", router);
   router.use("/books", authMiddleware.requireToken, books);
   router.use("/authors", authMiddleware.requireToken, authors);
+  router.use("/students", authMiddleware.requireToken, students);
   router.use("/users", authMiddleware.requireToken, users);
   router.use("/login", login);
 

@@ -1,0 +1,15 @@
+
+GET {{apiUrl}}/authors/getAll HTTP/1.1
+authorization: {{token}}
+
+###
+
+POST {{apiUrl}}/api/authors HTTP/1.1
+authorization:{{token}}
+content-type: {{content-type}}
+
+{
+  "name": "Shakes "
+}
+
+

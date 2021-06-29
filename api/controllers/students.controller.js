@@ -7,7 +7,7 @@ class StudentContoller {
 
 StudentContoller.prototype.getAll = (req, res, next) => {
   res.status(200).json({
-    message: "Authors fetched.",
+    message: "Students fetched.",
     content: res.content,
     pagination: res.pagination,
   });
@@ -35,7 +35,10 @@ StudentContoller.prototype.createStudent = (req, res, next) => {
     name: req.body.name,
     createdBy: req.user.name,
     createdById: req.user._id,
-    description: req.body.description,
+    section: req.body.section,
+    rno: req.body.rno,
+    IdNumber: req.body.IdNumber,
+    class: req.body.class,
   });
 
   student
@@ -59,7 +62,15 @@ StudentContoller.prototype.updateStudent = (req, res, next) => {
       {
         _id: req.body._id,
       },
-      { $set: { name: req.body.name } },
+      {
+        $set: {
+          name: req.body.name,
+          section: req.body.section,
+          rno: req.body.rno,
+          IdNumber: req.body.IdNumber,
+          class: req.body.class,
+        },
+      },
       { new: true }
     )
     .then((result) => {
