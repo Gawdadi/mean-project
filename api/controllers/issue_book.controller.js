@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
+  issueBookSchema = require("../models/issue_book.model");
 
 class IssueBookController {
   constructor() {}
@@ -6,7 +7,7 @@ class IssueBookController {
 
 IssueBookController.prototype.getAll = (req, res, next) => {
   res.status(200).json({
-    message: "Students fetched.",
+    message: "List fetched.",
     content: res.content,
     pagination: res.pagination,
   });
@@ -14,7 +15,7 @@ IssueBookController.prototype.getAll = (req, res, next) => {
 
 IssueBookController.prototype.findById = (req, res, next) => {
   const issueBookId = req.params.issueBookId;
-  studentSchema
+  issueBookSchema
     .findById(issueBookId)
     .exec()
     .then((result) => {
@@ -29,7 +30,7 @@ IssueBookController.prototype.findById = (req, res, next) => {
 };
 
 IssueBookController.prototype.create = (req, res, next) => {
-  const student = new studentSchema({
+  const student = new issueBookSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     createdBy: req.user.name,
@@ -56,7 +57,7 @@ IssueBookController.prototype.create = (req, res, next) => {
 };
 
 IssueBookController.prototype.update = (req, res, next) => {
-  studentSchema
+  issueBookSchema
     .findOneAndUpdate(
       {
         _id: req.body._id,
@@ -85,7 +86,7 @@ IssueBookController.prototype.update = (req, res, next) => {
 
 IssueBookController.prototype.delete = (req, res, next) => {
   const studentId = req.params.studentId;
-  studentSchema
+  issueBookSchema
     .deleteOne({ _id: studentId })
     .then((result) => {
       res.status(200).json({
@@ -101,7 +102,7 @@ IssueBookController.prototype.search = (req, res, next) => {
   console.log(req.query);
   var query = { $text: { $search: req.query.search, $language: "en" } };
   console.log(text);
-  studentSchema
+  issueBookSchema
     .find(query)
     .exec()
     .then((result) => {
