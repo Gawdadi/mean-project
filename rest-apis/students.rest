@@ -10,3 +10,9 @@ Content-Type : {{content-type}}
     "class" : "XI",
     "uniqueId" : "69AXII"
 }
+
+###
+
+GET {{apiUrl}}/students/search?key=Lan HTTP/1.1
+authorization: {{token}}
+Content-Type : {{content-type}}

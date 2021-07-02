@@ -16,6 +16,8 @@ router.put("/", studentsController.updateStudent);
 
 router.get("/getById/:studentId", studentsController.findById);
 
+router.get("/search", studentsController.search);
+
 router.delete("/:studentId", studentsController.deleteStudent);
 
 module.exports = router;

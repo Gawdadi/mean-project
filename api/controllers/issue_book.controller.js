@@ -1,11 +1,10 @@
-const mongoose = require("mongoose"),
-  studentSchema = require("../models/student.model");
+const mongoose = require("mongoose");
 
-class StudentContoller {
+class IssueBookController {
   constructor() {}
 }
 
-StudentContoller.prototype.getAll = (req, res, next) => {
+IssueBookController.prototype.getAll = (req, res, next) => {
   res.status(200).json({
     message: "Students fetched.",
     content: res.content,
@@ -13,10 +12,10 @@ StudentContoller.prototype.getAll = (req, res, next) => {
   });
 };
 
-StudentContoller.prototype.findById = (req, res, next) => {
-  const studentId = req.params.studentId;
+IssueBookController.prototype.findById = (req, res, next) => {
+  const issueBookId = req.params.issueBookId;
   studentSchema
-    .findById(studentId)
+    .findById(issueBookId)
     .exec()
     .then((result) => {
       res.status(200).json({
@@ -29,7 +28,7 @@ StudentContoller.prototype.findById = (req, res, next) => {
     });
 };
 
-StudentContoller.prototype.createStudent = (req, res, next) => {
+IssueBookController.prototype.create = (req, res, next) => {
   const student = new studentSchema({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -56,7 +55,7 @@ StudentContoller.prototype.createStudent = (req, res, next) => {
     });
 };
 
-StudentContoller.prototype.updateStudent = (req, res, next) => {
+IssueBookController.prototype.update = (req, res, next) => {
   studentSchema
     .findOneAndUpdate(
       {
@@ -84,7 +83,7 @@ StudentContoller.prototype.updateStudent = (req, res, next) => {
     });
 };
 
-StudentContoller.prototype.deleteStudent = (req, res, next) => {
+IssueBookController.prototype.delete = (req, res, next) => {
   const studentId = req.params.studentId;
   studentSchema
     .deleteOne({ _id: studentId })
@@ -98,7 +97,7 @@ StudentContoller.prototype.deleteStudent = (req, res, next) => {
     });
 };
 
-StudentContoller.prototype.search = (req, res, next) => {
+IssueBookController.prototype.search = (req, res, next) => {
   console.log(req.query);
   var query = { $text: { $search: req.query.search, $language: "en" } };
   console.log(text);
@@ -117,4 +116,4 @@ StudentContoller.prototype.search = (req, res, next) => {
     });
 };
 
-module.exports = new StudentContoller();
+module.exports = new IssueBookController();
