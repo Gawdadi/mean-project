@@ -8,7 +8,7 @@ const express = require("express"),
   authors = require("./api/routes/authors.route"),
   students = require("./api/routes/students.route"),
   users = require("./api/routes/users.route"),
-  users = require("./api/routes/issue_book.route"),
+  issue_book = require("./api/routes/issue_book.route"),
   login = require("./api/routes/login.route"),
   morgan = require("morgan"),
   config = require("./lib/conf/appconfig"),
@@ -28,7 +28,7 @@ class Server {
 // Initialize Express Middlewares
 Server.prototype.initExpressMiddleWare = () => {
   app.use(express.urlencoded({ extended: true }));
-  app.use(expres.json());
+  app.use(express.json());
   app.use(express.static(path.join(__dirname, "public")));
 
   // Cors
@@ -62,7 +62,7 @@ Server.prototype.initRoutes = () => {
   router.use("/authors", authMiddleware.requireToken, authors);
   router.use("/students", authMiddleware.requireToken, students);
   router.use("/users", authMiddleware.requireToken, users);
-  router.use("/issueBook", authMiddleware.requireToken);
+  router.use("/issueBook", authMiddleware.requireToken, issue_book);
 
   // Always use error handling after routes.
   // Error handling.

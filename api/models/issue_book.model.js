@@ -2,7 +2,7 @@ const mongoose = require("mongoose"),
   schema = mongoose.Schema,
   Enum = require("../../lib/enums/enums");
 
-const issueBookSchema = new Schema({
+const issueBookSchema = new schema({
   _id: schema.Types.ObjectId,
   notes: String,
   createdBy: String,

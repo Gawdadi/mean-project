@@ -1,0 +1,21 @@
+
+GET {{apiUrl}}/issueBook/getAll HTTP/1.1
+authorization: {{token}}
+
+###
+
+POST {{apiUrl}}/books HTTP/1.1
+authorization: {{token}}
+content-type: {{content-type}}
+
+{
+  "name": "Jana TT",
+  "price": 1000,
+  "author_id" : "60d87f74d3a48bc699dfd2fd"
+}
+
+###
+
+GET {{apiUrl}}/books/getWithAuthors HTTP/1.1
+authorization: {{token}}
+content-type: {{content-type}}
