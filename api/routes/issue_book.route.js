@@ -1,9 +1,14 @@
 const express = require("express"),
   router = express.Router(),
   pageable = require("../middleware/pageable"),
-  issueBookController = require("../controllers/issue_book.controller");
+  issueBookController = require("../controllers/issue_book.controller"),
+  IssueBookSchema = require("../models/issue_book.model");
 
-router.get("/getAll", pageable.pagination, issueBookController.getAll);
+router.get(
+  "/getAll",
+  pageable.pagination(IssueBookSchema),
+  issueBookController.getAll
+);
 
 router.post("/", issueBookController.create);
 
