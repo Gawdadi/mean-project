@@ -4,11 +4,12 @@ const express = require("express"),
   path = require("path"),
   cors = require("cors"),
   app = express(),
-  books = require("./api/routes/books.route.js"),
-  authors = require("./api/routes/authors.route.js"),
-  students = require("./api/routes/students.route.js"),
-  users = require("./api/routes/users.route.js"),
-  login = require("./api/routes/login.route.js"),
+  books = require("./api/routes/books.route"),
+  authors = require("./api/routes/authors.route"),
+  students = require("./api/routes/students.route"),
+  users = require("./api/routes/users.route"),
+  users = require("./api/routes/issue_book.route"),
+  login = require("./api/routes/login.route"),
   morgan = require("morgan"),
   config = require("./lib/conf/appconfig"),
   authMiddleware = require("./api/middleware/tokenAuth"),
@@ -27,7 +28,7 @@ class Server {
 // Initialize Express Middlewares
 Server.prototype.initExpressMiddleWare = () => {
   app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+  app.use(expres.json());
   app.use(express.static(path.join(__dirname, "public")));
 
   // Cors
@@ -56,11 +57,12 @@ Server.prototype.listenPort = () => {
 // Load API routes and error handling
 Server.prototype.initRoutes = () => {
   app.use("/api", router);
+  router.use("/login", login);
   router.use("/books", authMiddleware.requireToken, books);
   router.use("/authors", authMiddleware.requireToken, authors);
   router.use("/students", authMiddleware.requireToken, students);
   router.use("/users", authMiddleware.requireToken, users);
-  router.use("/login", login);
+  router.use("/issueBook", authMiddleware.requireToken);
 
   // Always use error handling after routes.
   // Error handling.
