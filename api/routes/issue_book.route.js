@@ -14,6 +14,8 @@ router.post("/", issueBookController.create);
 
 router.put("/", issueBookController.update);
 
+router.put("/returnBook", issueBookController.return);
+
 router.get("/getById/:issueBookId", issueBookController.findById);
 
 router.get("/search", issueBookController.search);

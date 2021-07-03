@@ -1,5 +1,6 @@
 const mongoose = require("mongoose"),
-  issueBookSchema = require("../models/issue_book.model");
+  issueBookSchema = require("../models/issue_book.model"),
+  issueBookService = require("../../lib/services/issueBook.service");
 
 class IssueBookController {
   constructor() {}
@@ -30,22 +31,50 @@ IssueBookController.prototype.findById = (req, res, next) => {
 };
 
 IssueBookController.prototype.create = (req, res, next) => {
-  const student = new issueBookSchema({
+  const issueBook = new issueBookSchema({
     _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
+    bookId: req.body.bookId,
+    studentId: req.body.studentId,
     createdBy: req.user.name,
     createdById: req.user._id,
-    section: req.body.section,
-    rno: req.body.rno,
-    uniqueId: req.body.uniqueId,
-    class: req.body.class,
+    status: "ISSUE",
+    issueDate: new Date().toISOString(),
   });
 
-  student
+  issueBook
     .save()
     .then((result) => {
       res.status(200).json({
-        message: result.name + " successfully added.",
+        message: "Book successfully issued.",
+        object: result,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: error,
+      });
+    });
+};
+
+IssueBookController.prototype.return = async (req, res, next) => {
+  const issueBook = await issueBookService.getById(req.body.id);
+  if (issueBook.status === "RETURN") {
+    res.status(200).json({
+      message: "Book already returned",
+    });
+    return;
+  }
+  issueBookSchema
+    .findByIdAndUpdate(
+      req.body.id,
+      { $set: { status: "RETURN", returnDate: new Date().toISOString() } },
+      {
+        new: true,
+      }
+    )
+    .then((result) => {
+      res.status(200).json({
+        message: "Book returned successfully.",
         object: result,
       });
     })

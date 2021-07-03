@@ -4,18 +4,28 @@ authorization: {{token}}
 
 ###
 
-POST {{apiUrl}}/books HTTP/1.1
+###
+// Return a book
+PUT {{apiUrl}}/issueBook/returnBook
 authorization: {{token}}
 content-type: {{content-type}}
 
 {
-  "name": "Jana TT",
-  "price": 1000,
-  "author_id" : "60d87f74d3a48bc699dfd2fd"
+   "id" : "60df30c0201c5c20642378ea" 
 }
 
 ###
+GET {{apiUrl}}/issueBook/getById/60df30c0201c5c20642378ea
+authorization: {{token}}
 
-GET {{apiUrl}}/books/getWithAuthors HTTP/1.1
+
+###
+
+POST {{apiUrl}}/issueBook HTTP/1.1
 authorization: {{token}}
 content-type: {{content-type}}
+
+{
+  "bookId" : "60d1f910e648ce50f070cddf",
+  "studentId" : "60df2d90cd9e2d1e30ef42d8"
+}
