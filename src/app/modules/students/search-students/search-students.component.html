@@ -1,1 +1,47 @@
 <app-float-button (onClick)="create()"></app-float-button>
+
+<div class="search-students">
+  <div class="search">
+    <label>Search student</label>
+    <input
+      name="name"
+      required
+      class="form-control"
+      placeholder="Search student by name or unique Id"
+    />
+  </div>
+  <div class="list mt-3">
+    <div class="card">
+      <!-- <div class="card-header">List of books</div> -->
+      <div class="card-body">
+        <table class="table table-borderless table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Author</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of students; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.name }}</td>
+              <td>{{ item.uniqueId }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-warning"
+                  (click)="onEdit(item._id)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td><button class="btn btn-sm btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

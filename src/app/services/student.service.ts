@@ -52,4 +52,12 @@ export class StudentService {
         });
     });
   }
+
+  getAll(): Observable<any> {
+    return new Observable((observer) => {
+      this.http.get(`${this.apiUrl}/getAll`).subscribe((res) => {
+        observer.next(res);
+      });
+    });
+  }
 }

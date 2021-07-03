@@ -18,18 +18,19 @@ export class SearchStudentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getWithAuthors();
+    this.getAll();
   }
 
   create() {
     this.router.navigate(['add'], { relativeTo: this.route });
   }
 
-  // getWithAuthors() {
-  //   this.studentService.post('data').subscribe((res: any) => {
-  //     this.students = res.content;
-  //   });
-  // }
+  getAll() {
+    this.studentService.getAll().subscribe((res: any) => {
+      console.log(res);
+      this.students = res.content;
+    });
+  }
 
   onEdit(authorId: string) {
     this.router.navigate([authorId], { relativeTo: this.route });

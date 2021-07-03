@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NODE_ENV=development nodemon server",
+    "start": "ng serve",
+    "start-server": "NODE_ENV=development nodemon server",
     "start-nodejs-prod": "NODE_ENV=production node server",
-    "startserver": "nodemon server.js",
     "build": "ng build --base-href https://gawdadi.github.io/mean-project/login ",
     "test": "ng test",
     "lint": "ng lint",
