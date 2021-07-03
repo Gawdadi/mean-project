@@ -23,7 +23,7 @@ export class SearchStudentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getSections();
+    // this.getSections();
     this.getAll();
   }
 
@@ -42,18 +42,20 @@ export class SearchStudentsComponent implements OnInit {
   search() {
     if (this.text.length) {
       let obj = {};
-      [obj['text'], obj['class'], obj['section']] = [
-        this.class,
+      [
+        obj['text'],
+        //  obj['class'], obj['section']
+      ] = [
         this.text,
-        this.section,
+        // this.class,
+        // this.section,
       ];
       this.onSearch(obj);
-    }
+    } else this.getAll();
   }
 
   getAll() {
     this.studentService.getAll().subscribe((res: any) => {
-      console.log(res);
       this.students = res.content;
     });
   }
@@ -61,7 +63,7 @@ export class SearchStudentsComponent implements OnInit {
   onSearch(obj: any) {
     this.studentService.search(obj).subscribe((res: any) => {
       console.log(res);
-      this.students = res.content;
+      this.students = res;
     });
   }
 }
