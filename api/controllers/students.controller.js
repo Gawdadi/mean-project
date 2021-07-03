@@ -111,7 +111,6 @@ StudentContoller.prototype.search = (req, res, next) => {
     })
     .exec()
     .then((result) => {
-      console.log(result);
       res.status(200).json({
         message: "Successfully fetched.",
         object: result,

@@ -9,7 +9,7 @@ authorization: {{token}}
 Content-Type : {{content-type}}
 
 {
-    "name":"Lana rhodes",
+    "name":"Aditya",
     "rno":"69",
     "section" : "A",
     "class" : "XI",
@@ -18,6 +18,10 @@ Content-Type : {{content-type}}
 
 ###
 
-GET {{apiUrl}}/students/search?key=XII HTTP/1.1
+PUT {{apiUrl}}/students/search HTTP/1.1
 authorization: {{token}}
 Content-Type : {{content-type}}
+
+{
+    "key":"adit"
+}
