@@ -1,4 +1,4 @@
-GET {{apiUrl}}/students/getAll HTTP/1.1
+GET {{apiUrl}}/students/getAll?sortBy="createdAt,asc" HTTP/1.1
 authorization: {{token}}
 Content-Type : {{content-type}}
 

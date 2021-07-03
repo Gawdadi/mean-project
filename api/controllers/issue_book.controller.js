@@ -129,6 +129,34 @@ IssueBookController.prototype.delete = (req, res, next) => {
     });
 };
 
+IssueBookController.prototype.getWithDetails = (req, res, next) => {
+  issueBookSchema
+    .findOneAndUpdate(
+      {
+        _id: req.body._id,
+      },
+      {
+        $set: {
+          name: req.body.name,
+          section: req.body.section,
+          rno: req.body.rno,
+          IdNumber: req.body.IdNumber,
+          class: req.body.class,
+        },
+      },
+      { new: true }
+    )
+    .then((result) => {
+      res.status(200).json({
+        message: "Updated successfully.",
+        object: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};
+
 IssueBookController.prototype.search = (req, res, next) => {
   console.log(req.query);
   var query = { $text: { $search: req.query.search, $language: "en" } };

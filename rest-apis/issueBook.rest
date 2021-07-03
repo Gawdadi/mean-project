@@ -29,3 +29,9 @@ content-type: {{content-type}}
   "bookId" : "60d1f910e648ce50f070cddf",
   "studentId" : "60df2d90cd9e2d1e30ef42d8"
 }
+
+###
+
+// Get with additional details.
+GET {{apiUrl}}/getWithDetails
+authorization: {{token}}

@@ -18,6 +18,8 @@ router.put("/returnBook", issueBookController.return);
 
 router.get("/getById/:issueBookId", issueBookController.findById);
 
+router.get("/getWithDetails", issueBookController.getWithDetails);
+
 router.get("/search", issueBookController.search);
 
 router.delete("/:issueBookId", issueBookController.delete);
