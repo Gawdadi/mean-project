@@ -12,3 +12,9 @@ export const CLASS = [
   'XI',
   'XII',
 ];
+
+export enum ISSUEBOOKSTATUS {
+  ISSUED = 'ISSUED',
+  RETURNED = 'RETURNED',
+  LOST = 'LOST',
+}
