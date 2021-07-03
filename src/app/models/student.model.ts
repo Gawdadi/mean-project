@@ -7,8 +7,8 @@ export class Student extends ModelBaseClass {
   }
 
   name: string;
-  class: string;
-  section: string;
+  class: string = null;
+  section: string = null;
   rno: number;
   uniqueId: string;
 }

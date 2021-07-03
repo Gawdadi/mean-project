@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Student } from 'src/app/models';
-import { StudentService } from 'src/app/services';
+import { Student, CLASS } from 'src/app/models';
+import { MiscService, StudentService } from 'src/app/services';
 
 @Component({
   selector: 'app-student-info',
@@ -12,13 +12,17 @@ export class StudentInfoComponent implements OnInit {
   student: Student = new Student();
   isLoading: boolean = false;
   studentId: string;
+  sections: string[] = [];
+  classes: string[] = CLASS;
   constructor(
     private studentService: StudentService,
+    private miscService: MiscService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.getParams();
+    this.getSections();
   }
 
   getParams() {
@@ -28,6 +32,10 @@ export class StudentInfoComponent implements OnInit {
         this.getById();
       }
     });
+  }
+
+  getSections() {
+    this.sections = this.miscService.getSections();
   }
 
   onSubmit() {

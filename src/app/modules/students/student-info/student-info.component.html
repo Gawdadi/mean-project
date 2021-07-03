@@ -13,25 +13,35 @@
             [(ngModel)]="student.name"
           />
         </div>
-        <div class="form-group">
-          <label>Class</label>
-          <input
-            type="text"
-            name="class"
-            required
-            class="form-control"
-            placeholder="Enter class"
-            [(ngModel)]="student.class"
-          />
-        </div>
-        <div class="form-group">
-          <label>Section</label>
-          <input
-            name="section"
-            class="form-control"
-            placeholder="Enter section(if any)"
-            [(ngModel)]="student.section"
-          />
+        <div class="row form-group">
+          <div class="col-md-8">
+            <label>Class</label>
+            <select
+              name="class"
+              required
+              [(ngModel)]="student.class"
+              class="form-control"
+            >
+              <option selected disabled [value]="null">Select class</option>
+              <option [value]="class" *ngFor="let class of classes">
+                {{ class }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Section</label>
+            <select
+              name="section"
+              required
+              [(ngModel)]="student.section"
+              class="form-control"
+            >
+              <option selected disabled [value]="null">Select section</option>
+              <option [value]="section" *ngFor="let section of sections">
+                {{ section }}
+              </option>
+            </select>
+          </div>
         </div>
         <div class="form-group">
           <label>Roll number</label>

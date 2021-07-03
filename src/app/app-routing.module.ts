@@ -36,6 +36,13 @@ const routes: Routes = [
             (m) => m.StudentsModule
           ),
       },
+      {
+        path: 'issue',
+        loadChildren: () =>
+          import('./modules/issueBook/issueBook.module').then(
+            (m) => m.IssueBookModule
+          ),
+      },
     ],
   },
 ];
