@@ -60,4 +60,12 @@ export class StudentService {
       });
     });
   }
+
+  search(data: any): Observable<any> {
+    return new Observable((observer) => {
+      this.http.put(`${this.apiUrl}/search`, data).subscribe((res) => {
+        observer.next(res);
+      });
+    });
+  }
 }

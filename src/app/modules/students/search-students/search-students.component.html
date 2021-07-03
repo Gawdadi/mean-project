@@ -2,13 +2,37 @@
 
 <div class="search-students">
   <div class="search">
-    <label>Search student</label>
-    <input
-      name="name"
-      required
-      class="form-control"
-      placeholder="Search student by name or unique Id"
-    />
+    <div class="row">
+      <div class="col-md-8">
+        <label>Search student</label>
+        <input
+          name="name"
+          required
+          class="form-control"
+          [(ngModel)]="text"
+          (ngModelChange)="search()"
+          placeholder="Search student by name or unique Id"
+        />
+      </div>
+      <div class="col-md-2">
+        <label>Class</label>
+        <select name="class" [(ngModel)]="class" class="form-control">
+          <option selected [value]="null">ALL</option>
+          <option [value]="class" *ngFor="let class of classes">
+            {{ class }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label>Section</label>
+        <select name="section" [(ngModel)]="section" class="form-control">
+          <option selected [value]="null">ALL</option>
+          <option [value]="class" *ngFor="let section of sections">
+            {{ section }}
+          </option>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="list mt-3">
     <div class="card">
