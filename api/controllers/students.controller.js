@@ -99,14 +99,14 @@ StudentContoller.prototype.deleteStudent = (req, res, next) => {
 };
 
 StudentContoller.prototype.search = (req, res, next) => {
-  console.log(req.query);
-  var searchTerm = req.query.key;
+  const { key, section = null, className = null } = req.body;
   studentSchema
     .find({
       $or: [
-        { name: { $regex: searchTerm, $options: "i" } },
-        { uniqueId: { $regex: searchTerm, $options: "i" } },
-        { class: { $regex: searchTerm } },
+        { name: { $regex: key, $options: "i" } },
+        { uniqueId: { $regex: key, $options: "i" } },
+        // { class: { $regex: "XII" && "" } },
+        // { section: { $regex: section && "" } },
       ],
     })
     .exec()
