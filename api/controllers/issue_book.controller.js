@@ -57,32 +57,34 @@ IssueBookController.prototype.create = (req, res, next) => {
 };
 
 IssueBookController.prototype.return = async (req, res, next) => {
-  const issueBook = await issueBookService.getById(req.body.id);
-  if (issueBook.status === "RETURN") {
-    res.status(200).json({
-      message: "Book already returned",
-    });
-    return;
-  }
-  issueBookSchema
-    .findByIdAndUpdate(
-      req.body.id,
-      { $set: { status: "RETURN", returnDate: new Date().toISOString() } },
-      {
-        new: true,
-      }
-    )
-    .then((result) => {
+  try {
+    const issueBook = await issueBookService.getById(req.body.id);
+    if (issueBook.status === "RETURN") {
       res.status(200).json({
-        message: "Book returned successfully.",
-        object: result,
+        message: "Book already returned",
       });
-    })
-    .catch((error) => {
-      res.status(500).json({
-        message: error,
+      return;
+    }
+    issueBookSchema
+      .findByIdAndUpdate(
+        req.body.id,
+        { $set: { status: "RETURN", returnDate: new Date().toISOString() } },
+        {
+          new: true,
+        }
+      )
+      .then((result) => {
+        res.status(200).json({
+          message: "Book returned successfully.",
+          object: result,
+        });
+      })
+      .catch((error) => {
+        res.status(500).json({
+          message: error,
+        });
       });
-    });
+  } catch {}
 };
 
 IssueBookController.prototype.update = (req, res, next) => {

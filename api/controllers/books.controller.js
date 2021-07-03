@@ -120,4 +120,23 @@ BooksController.prototype.deleteBook = (req, res) => {
     });
 };
 
+BooksController.prototype.search = (req, res, next) => {
+  console.log(req.query);
+  var searchTerm = req.query.key;
+  bookSchema
+    .find({
+      $or: [{ name: { $regex: searchTerm, $options: "i" } }],
+    })
+    .exec()
+    .then((result) => {
+      res.status(200).json({
+        message: "Successfully fetched.",
+        object: result,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
+};
+
 module.exports = new BooksController();

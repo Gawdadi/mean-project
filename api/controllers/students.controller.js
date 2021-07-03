@@ -100,10 +100,15 @@ StudentContoller.prototype.deleteStudent = (req, res, next) => {
 
 StudentContoller.prototype.search = (req, res, next) => {
   console.log(req.query);
-  var query = { $text: { $search: req.query.search, $language: "en" } };
-  console.log(text);
+  var searchTerm = req.query.key;
   studentSchema
-    .find(query)
+    .find({
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        { uniqueId: { $regex: searchTerm, $options: "i" } },
+        { class: { $regex: searchTerm } },
+      ],
+    })
     .exec()
     .then((result) => {
       console.log(result);
