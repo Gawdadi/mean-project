@@ -8,7 +8,7 @@ Pageable.prototype.pagination = (model) => {
     const size = req.query.size ? Number(req.query.size) : 50;
     const [sortBy, desc] = req.query.sortBy
       ? req.query.sortBy.slice(1, -1).split(",")
-      : ["createdAt", -1];
+      : ["createdAt", "desc"];
     const skip = (page - 1) * size;
     const pagination = {
       size: size,
