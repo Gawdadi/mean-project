@@ -3,6 +3,9 @@ GET {{apiUrl}}/issueBook/getAll HTTP/1.1
 authorization: {{token}}
 
 ###
+// Get with details
+GET {{apiUrl}}/issueBook/getWithDetails HTTP/1.1
+authorization: {{token}}
 
 ###
 // Return a book
@@ -15,6 +18,7 @@ content-type: {{content-type}}
 }
 
 ###
+// Get by Id
 GET {{apiUrl}}/issueBook/getById/60df30c0201c5c20642378ea
 authorization: {{token}}
 
@@ -32,6 +36,3 @@ content-type: {{content-type}}
 
 ###
 
-// Get with additional details.
-GET {{apiUrl}}/getWithDetails
-authorization: {{token}}

@@ -1,17 +1,52 @@
 const mongoose = require("mongoose"),
   issueBookSchema = require("../models/issue_book.model"),
-  issueBookService = require("../../lib/services/issueBook.service");
+  issueBookService = require("../../lib/services/issueBook.service"),
+  bookService = require("../../lib/services/book.service"),
+  studentService = require("../../lib/services/student.service"),
+  commonUtils = require("../../lib/utils/common.utility");
 
 class IssueBookController {
   constructor() {}
 }
 
-IssueBookController.prototype.getAll = (req, res, next) => {
+IssueBookController.prototype.getAll = async (req, res, next) => {
   res.status(200).json({
     message: "List fetched.",
     content: res.content,
     pagination: res.pagination,
   });
+};
+
+IssueBookController.prototype.getWithDetails = async (req, res, next) => {
+  try {
+    /**
+     * Get student and book ids
+     */
+    const bookIds = [...new Set(res.content.map((elem) => elem.bookId))];
+    const studentsIds = [...new Set(res.content.map((elem) => elem.studentId))];
+
+    /**
+     * Hashmap for students and books
+     */
+    const booksHashMap = commonUtils.getHashMap(
+      await bookService.getByIds(bookIds)
+    );
+    const studentsHashMap = commonUtils.getHashMap(
+      await studentService.getByIds(studentsIds)
+    );
+    res.status(200).json({
+      message: "List fetched.",
+      content: res.content,
+      books: booksHashMap,
+      students: studentsHashMap,
+      pagination: res.pagination,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "List fetched.",
+      message: error,
+    });
+  }
 };
 
 IssueBookController.prototype.findById = (req, res, next) => {
@@ -122,34 +157,6 @@ IssueBookController.prototype.delete = (req, res, next) => {
     .then((result) => {
       res.status(200).json({
         message: "Deleted Successfully",
-      });
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-};
-
-IssueBookController.prototype.getWithDetails = (req, res, next) => {
-  issueBookSchema
-    .findOneAndUpdate(
-      {
-        _id: req.body._id,
-      },
-      {
-        $set: {
-          name: req.body.name,
-          section: req.body.section,
-          rno: req.body.rno,
-          IdNumber: req.body.IdNumber,
-          class: req.body.class,
-        },
-      },
-      { new: true }
-    )
-    .then((result) => {
-      res.status(200).json({
-        message: "Updated successfully.",
-        object: result,
       });
     })
     .catch((err) => {

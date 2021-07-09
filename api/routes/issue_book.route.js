@@ -10,6 +10,12 @@ router.get(
   issueBookController.getAll
 );
 
+router.get(
+  "/getWithDetails",
+  pageable.pagination(IssueBookSchema),
+  issueBookController.getWithDetails
+);
+
 router.post("/", issueBookController.create);
 
 router.put("/", issueBookController.update);
