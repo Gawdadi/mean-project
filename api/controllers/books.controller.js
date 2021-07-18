@@ -1,4 +1,3 @@
-const { __awaiter } = require("tslib");
 const bookSchema = require("../models/book.model"),
   mongoose = require("mongoose"),
   authorService = require("../../lib/services/author.service");
@@ -80,7 +79,7 @@ BooksController.prototype.createBook = async (req, res) => {
     });
 };
 
-BooksController.prototype.updateBook = async (req, res) => {
+BooksController.prototype.updateBook = (req, res) => {
   bookSchema
     .findOneAndUpdate(
       {

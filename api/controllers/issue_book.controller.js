@@ -43,7 +43,6 @@ IssueBookController.prototype.getWithDetails = async (req, res, next) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "List fetched.",
       message: error,
     });
   }
@@ -121,6 +120,37 @@ IssueBookController.prototype.return = async (req, res, next) => {
       });
   } catch {}
 };
+
+// IssueBookController.prototype.lost = async (req, res, next) => {
+//   try {
+//     const issueBook = await issueBookService.getById(req.body.id);
+//     if (issueBook.status === "LOST") {
+//       res.status(200).json({
+//         message: "Book already marked as lost",
+//       });
+//       return;
+//     }
+//     issueBookSchema
+//       .findByIdAndUpdate(
+//         req.body.id,
+//         { $set: { status: "LOST", returnDate: new Date().toISOString() } },
+//         {
+//           new: true,
+//         }
+//       )
+//       .then((result) => {
+//         res.status(200).json({
+//           message: "Book returned successfully.",
+//           object: result,
+//         });
+//       })
+//       .catch((error) => {
+//         res.status(500).json({
+//           message: error,
+//         });
+//       });
+//   } catch {}
+// };
 
 IssueBookController.prototype.update = (req, res, next) => {
   issueBookSchema
